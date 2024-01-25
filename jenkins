@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the GitHub repository
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Your build commands here
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Your test commands here
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Your deployment commands here
+                sh 'mvn deploy'
+            }
+        }
+    }
+}
